@@ -1,5 +1,9 @@
 <?php
 include ("../conexao.php");
+
+
+
+
 $og = $_POST['origem'];
 $des = $_POST['destino'];
 $data=array();
@@ -8,4 +12,17 @@ while ($row=mysqli_fetch_object($q)){
  $data[]=$row;
 }
 echo json_encode($data);
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
