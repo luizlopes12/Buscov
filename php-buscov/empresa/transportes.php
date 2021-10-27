@@ -13,7 +13,8 @@ include ("../conexao.php");
         $register = mysqli_num_rows(mysqli_query($con, "SELECT * FROM onibus WHERE placa = '$placaOnibus'"));
         if($register == 0)
         {
-            $insert = mysqli_query($con, "INSERT INTO onibus (cod_empresa, placa, assentos) VALUES ('$cod_empresa', '$placaOnibus', '$assentosOnibus', '$origemOnibus', '$destinoOnibus')");
+            $insert = mysqli_query($con, "INSERT INTO onibus (cod_empresa, placa, assentos) VALUES ('$cod_empresa', '$placaOnibus', '$assentosOnibus')");
+            $insert = mysqli_query($con, "INSERT INTO rotas (origem, destino) VALUES ('$origemOnibus', '$destinoOnibus')");
 
             if($insert)
                 echo "success";
