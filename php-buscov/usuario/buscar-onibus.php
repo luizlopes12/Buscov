@@ -13,16 +13,4 @@ while ($row=mysqli_fetch_object($q)){
 }
 echo json_encode($data);
 
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
