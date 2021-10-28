@@ -38,43 +38,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <title>Veja os transportes</title>
     <script>
-<<<<<<< HEAD
-        let pesquisar = () =>{
-            //Animação de pesquisa
-            /*
-            let spinner = document.querySelector('.spinner-border')
-            spinner.classList.remove('d-none')
-            */
-            let origem = document.querySelector('#origem').value
-            let destino = document.querySelector('#destino').value
-            let data = document.querySelector('#data-partida').value
-            console.log(`${origem},${destino},${data}`)
-            var url = "http://localhost/php-buscov/usuario/buscar-onibus.php";
-            $.getJSON(url, function(result) {
-            console.log(result);
-            $.each(result, function(i, field) {
-                var cod_onibus = field.cod_onibus;
-                var cod_empresa = field.cod_empresa;
-                var cod_rota = field.cod_rota;
-                var placa = field.placa;
-                var assentos = field.assentos;
-                var disponiveis = field.disponiveis;
-                let dados = `${cod_onibus},${cod_empresa},${cod_rota},${placa},${assentos},${disponiveis}`
-                console.log(dados)
-=======
-        // let pesquisar = () =>{
-        //     //Animação de pesquisa
-        //     /*
-        //     let spinner = document.querySelector('.spinner-border')
-        //     spinner.classList.remove('d-none')
-        //     */
-        //     let origem = document.querySelector('#origem').value;
-        //     let destino = document.querySelector('#destino').value;
-        //     let data = document.querySelector('#data-partida').value;
-        //     console.log(`${origem},${destino},${data}`);
-        //     var url = "http://localhost/php-buscov/usuario/buscar-onibus.php";        
-        // return false;  
-        // }
         $(document).ready(function() {
         var url = "http://localhost/php-buscov/usuario/buscar-onibus.php";
         $("#buscar").click(function(){
@@ -88,18 +51,9 @@
                 success: function(data){
                     console.log(data)
                 }
->>>>>>> 81dd57b84a747c81d2c7c1a722bb6d88dcb3e7aa
             });
             })
         });
-<<<<<<< HEAD
-        return false;  
-        }
-=======
-
-
-
->>>>>>> 81dd57b84a747c81d2c7c1a722bb6d88dcb3e7aa
     </script>
 </head>
 <body class="bg-cinza">
