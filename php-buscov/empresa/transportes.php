@@ -7,6 +7,9 @@ include ("../conexao.php");
 	$assentosOnibus = $_POST['assentos-onibus'];
 	$origemOnibus = $_POST['origem-onibus'];
 	$destinoOnibus = $_POST['destino-onibus'];
+    $precoOnibus = $_POST['preco-onibus'];
+    $inicioServico = $_POST['inicio-servico'];
+    $terminoServico = $-POST['termino-servico'];
 
     if(isset($_POST['register']))
     {   
