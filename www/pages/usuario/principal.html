@@ -18,8 +18,6 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js" integrity="sha512-cyAbuGborsD25bhT/uz++wPqrh5cqPh1ULJz4NSpN9ktWcA6Hnh9g+CWKeNx2R0fgQt+ybRXdabSBgYXkQTTmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<<<<<<< HEAD
-
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
@@ -27,33 +25,52 @@
     <!--
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     -->
-=======
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.esm.min.js"></script>
->>>>>>> 81dd57b84a747c81d2c7c1a722bb6d88dcb3e7aa
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <title>Veja os transportes</title>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
+
         var url = "http://localhost/php-buscov/usuario/buscar-onibus.php";
+
         $("#buscar").click(function(){
-            var origem = $.trim($("#origem").val());
-            var destino = $.trim($("#destino").val());
-            var procurar ="origem=" + origem + "&destino=" + destino + "&buscar=";
+            var origemOnibus = $.trim($("#origem-onibus").val());
+            var destinoOnibus = $.trim($("#destino-onibus").val());
+            var url = "http://localhost/php-buscov/usuario/buscar-onibus.php?origem-onibus=" + origemOnibus + "&destino-onibus=" + destinoOnibus;
             $.ajax({
-                type: "POST",crossDomain: true, cache: false,
-                url: url,
-                data: procurar,
-                success: function(data){
-                    console.log(data)
-                }
+            type: "POST",crossDomain: true, cache: false,
+            url: url,
+            data: url,
+            success: function(data){    
+
+            $.getJSON(url, function(result) {                  
+            $.each(result, function(i, field) {                    
+            var origemOnibus = field.origem;
+            var destinoOnibus = field.destino;
+            var precoOnibus = field.preco;
+            var inicioServico = field.horaInicio;
+            var terminoServico = field.horaTermino;
+
+           /* $("#listview").append("<div class='p-2 mx-auto mb-3 bg-branco rounded row'>   <div class='col-6 d-flex align-items-center justify-content-start'>   <label class='color-preta fs-5 fw-bold font-martel' id='horaInicio'>      </div>   </div>");*/
+
+            $("#listview").append("<a class='' href='#?horaInicio=" + inicioServico + "&horaTermino=" + terminoServico + "&preco=" + precoOnibus + "&origem=" + origemOnibus + "&destino-onibus=" + destinoOnibus + "</a>");
+                                
+            /*document.user.origem.value = origem;
+            document.user.destino-onibus.value = destino-onibus;
+            document.user.preco.value = preco;
+            document.user.horaInicio.value = horaInicio;
+            document.user.destino-onibus.value= horaTermino;   */                           
+                            });      
+                        });                     
+                    }
+                });
+                });
             });
-            })
-        });
     </script>
 </head>
 <body class="bg-cinza">
@@ -102,32 +119,31 @@
                 INPUT PARA MARCAR A ORIGEM 
                 ----------------------------->
                 <div class="input-group flex-nowrap mb-2">
-                    <!-- <span class="icons-div" id="origem"><img src="../../icons/geo-alt.svg" alt="ícone de origem"></span> -->
+                    <!-- <span class="icons-div" id="origem-onibus"><img src="../../icons/geo-alt.svg" alt="ícone de origem"></span> -->
                     <span class="icons-div"><i class="fas fa-location-arrow color-laranja"></i></span>
-                    <input type="text" class="form-control border-0" placeholder="Origem" aria-describedby="addon-wrapping" id="origem">
+                    <input type="text" class="form-control border-0" placeholder="Origem" aria-describedby="addon-wrapping" id="origem-onibus">
                 </div>
 
                 <!-------------------------
                 INPUT PARA MARCAR O DESTINO 
                 --------------------------->
                 <div class="input-group flex-nowrap mb-2">
-                    <!-- <span class="icons-div" id="destino"><img src="../../icons/geo-alt-fill.svg" alt="ícone de destino" class="lugar"></span> -->
+                    <!-- <span class="icons-div" id="destino-onibus"><img src="../../icons/geo-alt-fill.svg" alt="ícone de destino-onibus" class="lugar"></span> -->
                     <span class="icons-div"><i class="fas fa-map-marker-alt color-azul"></i></span>
-                    <input type="text" class="form-control border-0" placeholder="Destino" aria-describedby="addon-wrapping" id="destino">
+                    <input type="text" class="form-control border-0" placeholder="Destino" aria-describedby="addon-wrapping" id="destino-onibus">
                 </div>
 
                 <!--------------------------------------
                 INPUTS PARA MARCAR A DATA DE IDA E VOLTA
                 ---------------------------------------->
 
-                <div class="input-group d-flex flex-nowrap justify-content-between">
+                <!-- <div class="input-group d-flex flex-nowrap justify-content-between">
                     <div class="d-flex col-7">
-                        <!-- <span class="icons-div" id="origem"><img src="../../icons/calendar3.svg" alt="Calendario" class="lugar"></span> -->
+                        <span class="icons-div" id="origem-onibus"><img src="../../icons/calendar3.svg" alt="Calendario" class="lugar"></span>
                         <span class="icons-div"><i class="fas fa-calendar-alt"></i></span>
                         <input type="date" class="form-control rounded-0 border-0" placeholder="Partida" aria-describedby="addon-wrapping" id="data-partida">
                     </div>
-               </div>
-
+                </div> -->
 
                 <button class="btn bg-laranja mt-3 fs-8 color d-flex align-items-center justify-content-center" id="buscar"><i class="fas fa-search icon-search"></i>Buscar</button>
       
@@ -147,35 +163,42 @@
     <section class="d-flex container flex-wrap">
         <div class="d-flex mx-auto row">
             <div class="p-2 mx-auto mb-3 bg-branco rounded row">
-                <div class="col-6 d-flex align-items-center justify-content-start">
-                    <label class="color-preta fs-5 fw-bold font-martel">
-                        15:30 <i class="fas fa-long-arrow-alt-right ms-1"></i>
-                        <span class="color-cinza">17:00</span>
+                <ul id="listview"></ul>
+                <!-- <div class="col-6 d-flex align-items-center justify-content-start">
+                    <label class="color-preta fs-5 fw-bold font-martel" id="horaInicio">
+                    
                     </label>
+                    <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                    <span class="color-cinza" id="horaTermino">
+
+                    </span>
+                    
                 </div>
 
                 <div class="col-6 d-flex align-items-center justify-content-end">
-                    <span class="fw-bold font-martel fs-4 mt-1"><sup>R$</sup>19,90</span>
+                    <span class="fw-bold font-martel fs-4 mt-1" id="preco"><sup>R$</sup></span>
                 </div>
 
                 <div class="col-8">
                     <div class="d-flex align-items-center justify-content-start">
                         <i class="fas fa-location-arrow color-laranja"></i>
-                        <label for="" class="ms-2">Belo Horizonte - MG</label> 
+                        <label for="" class="ms-2" id="origemBusca"></label> 
                     </div>
                     
                     <div class="d-flex align-items-center justify-content-start">
                         <i class="fas fa-map-marker-alt color-azul"></i>
-                        <label for="" class="ms-2">Rio de Janeiro - RJ</label>    
+                        <label for="" class="ms-2" id="destino-onibusBusca"></label>    
                     </div>  
-                </div>
+                </div> 
 
                 <div class="col-4 d-flex align-items-center justify-content-end">
                     <a href="assentos.html" class="btn btn-warning text-uppercase font-martel fw-bold">Comprar</a>
-                </div>
+                </div> -->
             </div>
         </div>
-    </section>
+      
+    </section>  
+      
 
     <!-- <footer class="bottom rodape">
         <div class="bottom align-items-center c-rodape">

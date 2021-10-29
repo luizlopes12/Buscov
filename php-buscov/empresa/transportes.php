@@ -9,14 +9,15 @@ include ("../conexao.php");
 	$destinoOnibus = $_POST['destino-onibus'];
     $precoOnibus = $_POST['preco-onibus'];
     $inicioServico = $_POST['inicio-servico'];
-    $terminoServico = $-POST['termino-servico'];
+    $terminoServico = $_POST['termino-servico'];
 
     if(isset($_POST['register']))
     {   
         $register = mysqli_num_rows(mysqli_query($con, "SELECT * FROM onibus WHERE placa = '$placaOnibus'"));
         if($register == 0)
         {
-            $insert = mysqli_query($con, "INSERT INTO onibus (cod_empresa, placa, assentos , origem, destino) VALUES ('$cod_empresa', '$placaOnibus', '$assentosOnibus', '$origemOnibus', '$destinoOnibus')");
+            $insert = mysqli_query($con, "INSERT INTO onibus (cod_empresa, placa, assentos, origem, destino, preco, horaInicio, horaTermino) VALUES ('$cod_empresa', '$placaOnibus', '$assentosOnibus', '$origemOnibus', '$destinoOnibus', '$precoOnibus', '$inicioServico', '$terminoServico')");
+            $insert = mysqli_query($con, "INSERT INTO rotas (origem, destino) VALUES ('$origemOnibus', '$destinoOnibus')");
 
             if($insert)
                 echo "success";
